@@ -9,7 +9,6 @@ export const RecipeContext = React.createContext()
 function App() {
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [selectedRecipeId, setselectedRecipeId] = useState()
-  const [mount, setMount] = useState(false)
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
   const Recipe_LOCAL_STORAGE_PREFIX = 'cookingWithReact'
@@ -22,20 +21,15 @@ function App() {
     handleRecipeChange
   }
 
-  const recipesSaveLocal = () => {
-    const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
-
-    if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
-  }
   useEffect(() => {
     // 因为我们是根据数组渲染UI的，所以一切的源头都是数组。数组要跟本地存储之间形成双向通道
     // 本地存储的意义：就是用本地存储来 “记住”/保存 数组的变化
     // 页面挂载时 ----> 数组更新成上一次的本地存储内容(本地存储--->数组)
-    if (!mount) {
-      setMount(true)
-      recipesSaveLocal()
-    }
-  }, [recipesSaveLocal, mount])
+
+    const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
+
+    if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
+  }, [])
 
   useEffect(() => {
     // 每次数组改变时 ----> 更新本地存储(数组-->本地存储)
