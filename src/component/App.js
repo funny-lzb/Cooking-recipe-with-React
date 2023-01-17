@@ -28,7 +28,7 @@ function App() {
     const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
 
     if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [Recipe_LOCAL_STORAGE_KEY])
 
   useEffect(() => {
     // 每次数组改变时 ----> 更新本地存储(数组-->本地存储)
