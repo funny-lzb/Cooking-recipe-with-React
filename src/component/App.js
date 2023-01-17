@@ -25,14 +25,10 @@ function App() {
     // 因为我们是根据数组渲染UI的，所以一切的源头都是数组。数组要跟本地存储之间形成双向通道
     // 本地存储的意义：就是用本地存储来 “记住”/保存 数组的变化
     // 页面挂载时 ----> 数组更新成上一次的本地存储内容(本地存储--->数组)
+    const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
 
-    function recipeSaveLoal() {
-      const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
-
-      if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
-    }
-    recipeSaveLoal()
-  }, [])
+    if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
+  }, [Recipe_LOCAL_STORAGE_KEY])
 
   useEffect(() => {
     // 每次数组改变时 ----> 更新本地存储(数组-->本地存储)
