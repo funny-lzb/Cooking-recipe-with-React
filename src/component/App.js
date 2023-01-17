@@ -26,10 +26,13 @@ function App() {
     // 本地存储的意义：就是用本地存储来 “记住”/保存 数组的变化
     // 页面挂载时 ----> 数组更新成上一次的本地存储内容(本地存储--->数组)
 
-    const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
+    function recipeSaveLoal() {
+      const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
 
-    if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
-  }, []) // eslint-disable-line
+      if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
+    }
+    recipeSaveLoal()
+  }, [])
 
   useEffect(() => {
     // 每次数组改变时 ----> 更新本地存储(数组-->本地存储)
