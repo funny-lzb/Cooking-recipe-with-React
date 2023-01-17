@@ -28,7 +28,6 @@ function App() {
     const recipesJSON = localStorage.getItem(Recipe_LOCAL_STORAGE_KEY)
 
     if (recipesJSON != null) setRecipes(JSON.parse(recipesJSON))
-    // eslint-disable-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
