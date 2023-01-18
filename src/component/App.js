@@ -33,7 +33,7 @@ function App() {
   useEffect(() => {
     // 每次数组改变时 ----> 更新本地存储(数组-->本地存储)
     localStorage.setItem(Recipe_LOCAL_STORAGE_KEY, JSON.stringify(recipes))
-  }, [recipes])
+  }, [recipes, Recipe_LOCAL_STORAGE_KEY])
 
   function handleRecipeAdd() {
     const newRecipe = [
